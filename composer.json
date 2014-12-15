@@ -1,0 +1,22 @@
+{
+    "name": "funplus/bi-sdk-php",
+    "description": "BI SDK for PHP",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "yuankun.zhang",
+            "email": "yuankun.zhang@funplus.com"
+        }
+    ],
+    "require": {
+        "aws/aws-sdk-php": "~2.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "Bi\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3"
+    }
+}
