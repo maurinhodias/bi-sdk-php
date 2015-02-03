@@ -6,9 +6,13 @@ use Bi\BiClient;
 
 BiClient::initialize(
     array('app_id' => 'your-app-id'),
-    'Bi\Consumer\BiFileConsumer',
+    'Bi\Consumer\BiFunplusGlobalFrontEndConsumer',
     array(
-        'output_dir' => dirname(__FILE__) . '/output'
+        'endpoint' => 'http_end_point',
+        'project' => 'your_project_name',
+        'group' => 'your_group_name',
+        'archive' => 1,
+        'es' => 0,
     )
 );
 

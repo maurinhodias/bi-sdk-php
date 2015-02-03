@@ -12,7 +12,7 @@ This version requires [Composer](http://getcomposer.org/) installed in your syst
 
 Add funplus/bi-sdk-php as a dependency and run composer update:
 
-```
+```json
 "requires": {
     "funplus/bi-sdk-php": "0.1.1"
     ...
@@ -28,7 +28,7 @@ Add funplus/bi-sdk-php as a dependency and run composer update:
 
 1. Import denpendencies.
 
-    ```
+    ```php
     <?php
     require 'bi-sdk-php/vendor/autoload.php';
 
@@ -37,7 +37,7 @@ Add funplus/bi-sdk-php as a dependency and run composer update:
 
 2. Initialize.
 
-    ```
+    ```php
     BiClient::initialize(
         array('app_id' => '<app_id>'),
         '<consumer_type>',
@@ -52,7 +52,7 @@ Add funplus/bi-sdk-php as a dependency and run composer update:
 
 3. Trace an event.
 
-    ```
+    ```php
     BiClient::instance()->trace(
         '<event_name>',
         '<user_id>',
@@ -72,9 +72,9 @@ Method signature:
 public static Bi\BiClient initialize(array $config, string $consumer_type, array $consumer_options);
 ```
 
-Examples: 
+Examples:
 
-```
+```php
 BiClient::initialize(
     array(
         // app_id is required
@@ -109,11 +109,11 @@ Parameters:
 - `Bi\Consumer\FileConsumer`.
 
 If performance is not among your concerns, `S3Consumer` would be the best option, because it will upload data directly to the AWS server. Alternatively, you can use `FileConsumer` for a better performance. It will temporarily store data in local files, which can be uploaded periodicly to the AWS server by using [bi-s3-uploader](https://bitbucket.org/yuankun/bi-s3-uploader).
-	
+
 `$consumer_options`. Settings for consumer with specific `$consumer_type`.
 
 - For `Bi\Consumer\S3Consumer`, you should provide these fields: `s3_bucket`, `s3_key`, `s3_secret`, `s3_region`.
-    
+
 - For `Bi\Consumer\FileConsumer`, you should provide one field named `output_dir`.
 
 
@@ -121,7 +121,7 @@ If performance is not among your concerns, `S3Consumer` would be the best option
 
 Method signature:
 
-```
+```php
 public static Bi\BiClient is_initialized();
 ```
 
@@ -134,7 +134,7 @@ Returns:
 
 Method signature:
 
-```
+```php
 public static Bi\BiClient instance();
 ```
 
@@ -152,7 +152,7 @@ public static Bi\BiClient trace(string $event, string $user_id, string $session_
 
 Examples:
 
-```
+```php
 BiClient::instance()->trace(
     'new_user',
     '16118',
@@ -179,14 +179,14 @@ Parameters:
 
 `$properties`. Extra properties for an event. Keep in mind that it is a serialized JSON **string**. For example:
 
-```
+```json
 '{"device": "iPhone2,1", "ip": "10.13.72.132", "os": "ios", "os_version": "6.1.3"}'
 
 ```
 
 `$collections`. Optional collections for an event; it can be null. Keep in mind that it is a serialized JSON **string**. For example:
 
-```
+```json
 '{
     "items_received": [
         {"item_id": "8100012", "item_name": "Yogurt Maker", "item_class": "durable", "item_type": "construction", "item_amount": 3}
@@ -209,7 +209,7 @@ If the size of the message queue reaches `max_queue_size`, the message queue wil
 
 Method signature:
 
-```
+```php
 public static Bi\BiClient flush();
 ```
 
@@ -217,7 +217,7 @@ public static Bi\BiClient flush();
 
 BI-php is well tested. The existed tests in the test directory can be run by using [PHPUnit](https://github.com/sebastianbergmann/phpunit/) with the following commands:
 
-```
+```bash
 composer update --dev
 cd test
 ../vendor/bin/phpunit .
@@ -225,7 +225,7 @@ cd test
 
 Or if you already have PHPUnit installed globally:
 
-```
+```bash
 cd test
 phpunit .
 ```

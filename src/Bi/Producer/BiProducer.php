@@ -5,6 +5,7 @@ use Bi\Core\BiEvent;
 use Bi\Consumer\BiAbstractConsumer;
 use Bi\Consumer\BiS3Consumer;
 use Bi\Consumer\BiFileConsumer;
+use Bi\Consumer\BiFunplusGlobalFrontEndConsumer;
 use Bi\Consumer\BiTestingConsumer;
 use Bi\Exception\BiConsumerNotExistException;
 use Bi\Exception\BiEventSerializeFailedException;
@@ -31,6 +32,7 @@ class BiProducer {
         'Bi\\Consumer\\BiS3Consumer',
         'Bi\\Consumer\\BiFileConsumer',
         'Bi\\Consumer\\BiTestingConsumer',
+        'Bi\\Consumer\\BiFunplusGlobalFrontEndConsumer'
     );
 
     /**

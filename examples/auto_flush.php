@@ -5,7 +5,7 @@ require('../vendor/autoload.php');
 use Bi\BiClient;
 
 BiClient::initialize(
-    array('app_id' => 'com.funplus.daota', 'max_queue_size' => 1024),
+    array('app_id' => 'your-app-id', 'max_queue_size' => 1024),
     'Bi\Consumer\BiS3Consumer',
     array(
         's3_bucket' => 'your-s3-bucket',

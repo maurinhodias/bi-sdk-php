@@ -61,6 +61,6 @@ class BiClientTest extends PHPUnit_Framework_TestCase {
 
     public function testGetVersion() {
         $version = BiClient::version();
-        $this->assertEquals('0.1-dev', $version);
+        $this->assertEquals('0.1.2-dev', $version);
     }
 }
