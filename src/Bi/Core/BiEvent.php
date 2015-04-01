@@ -82,7 +82,7 @@ class BiEvent {
         }
 
         if (!isset($this->_collections)) {
-            $this->_collections = 'null';
+            $this->_collections = '{}';
         }
 
         return sprintf(

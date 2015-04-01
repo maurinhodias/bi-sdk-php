@@ -9,7 +9,7 @@ use Bi\Exception\BiNotInitializeException;
  */
 class BiClient {
 
-    const CURRENT_VERSION = '0.1.2-dev';
+    const CURRENT_VERSION = '0.1.2';
 
     /**
      * @var BiClient The singleton instance of BiClient.

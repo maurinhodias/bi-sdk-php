@@ -14,7 +14,7 @@ Add funplus/bi-sdk-php as a dependency and run composer update:
 
 ```json
 "requires": {
-    "funplus/bi-sdk-php": "0.1.1"
+    "funplus/bi-sdk-php": "0.1.2"
     ...
 }
 ```
@@ -35,17 +35,14 @@ Add funplus/bi-sdk-php as a dependency and run composer update:
     use Bi\BiClient;
     ```
 
-2. Initialize.
+2. Initialize, assumming we are using `BiFluentdConsumer`:
 
     ```php
     BiClient::initialize(
         array('app_id' => '<app_id>'),
-        '<consumer_type>',
+        'Bi\Consumer\BiFluentdConsumer',
         array(
-            's3_bucket' => '<bucket>',
-            's3_key'=> '<access_key>',
-            's3_secret' => '<secret_key>',
-            's3_region' => '<region>'
+            'socket' => 'socket_path'   // The fluentd agent's socket
         )
     );
     ```
@@ -84,10 +81,7 @@ BiClient::initialize(
     ),
     'Bi\Consumer\BiS3Consumer',
     array(
-        's3_bucket' => 'string',
-        's3_key'    => 'string',
-        's3_secret' => 'string',
-        's3_region' => 'string'
+        'socket' => 'string'
     )
 );
 ```
@@ -104,17 +98,21 @@ Parameters:
 
 `$consumer_type`. An easy and friendly Producer-Consumer Model is applied in this SDK logic, which gives us flexibility to alter consumer strategy. Following are built-in consumers:
 
-- `Bi\Consumer\S3Consumer`.
+- `Bi\Consumer\BiS3Consumer`.
 
-- `Bi\Consumer\FileConsumer`.
+- `Bi\Consumer\BiFileConsumer`.
+
+- `Bi\Consumer\BiFluentdConsumer`.
 
 If performance is not among your concerns, `S3Consumer` would be the best option, because it will upload data directly to the AWS server. Alternatively, you can use `FileConsumer` for a better performance. It will temporarily store data in local files, which can be uploaded periodicly to the AWS server by using [bi-s3-uploader](https://bitbucket.org/yuankun/bi-s3-uploader).
 
 `$consumer_options`. Settings for consumer with specific `$consumer_type`.
 
-- For `Bi\Consumer\S3Consumer`, you should provide these fields: `s3_bucket`, `s3_key`, `s3_secret`, `s3_region`.
+- For `Bi\Consumer\BiS3Consumer`, you should provide these fields: `s3_bucket`, `s3_key`, `s3_secret`, `s3_region`.
 
-- For `Bi\Consumer\FileConsumer`, you should provide one field named `output_dir`.
+- For `Bi\Consumer\BiFileConsumer`, you should provide one field named `output_dir`.
+
+- For `Bi\Consumer\BiFluentdConsumer`, you should provide one field named `socket`.
 
 
 ### 2. Check if BI client is initialized.
@@ -164,7 +162,7 @@ BiClient::instance()->trace(
         "ip": "10.13.72.132",
         "lang": "en_US",
         "level": 11,
-        "install_ts": "1411541374"
+        "install_ts": 1411541374
     }'
 );
 ```

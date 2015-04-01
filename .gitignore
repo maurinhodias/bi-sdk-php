@@ -94,6 +94,7 @@ local.properties
 build/
 vendor/
 output/
+local_examples/
 *.tmproj
 *.tm_build_errors
 composer.lock
