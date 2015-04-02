@@ -14,3 +14,8 @@
 * Add `BiFluentdConsumer` to post data to Fluentd.
 * Change type of `install_ts` to `integer`.
 * Change default value for `collection` from `null` to `{}`.
+
+### Version 0.1.3
+
+* Modify behaviour of `BiFluentdConsumer`, to fit the requirement of BI system.
+* Fix an evil bug in `BiFluentdConsumer` when calling data persist.

@@ -28,7 +28,13 @@ class BiFluentdConsumer extends BiAbstractConsumer {
         $logger = new FluentLogger($socket);
 
         foreach ($batch as $msg) {
-            $logger->post($app_id, array($app_id => $msg));
+            $arr = json_decode($msg, true);
+            if (empty($arr['collections'])) {
+                $arr['collections'] = '{}';
+            }
+            $logger->post($app_id, $arr);
         }
+
+        return true;
     }
 }
