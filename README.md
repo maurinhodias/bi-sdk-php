@@ -14,7 +14,7 @@ Add funplus/bi-sdk-php as a dependency and run composer update:
 
 ```json
 "requires": {
-    "funplus/bi-sdk-php": "0.1.2"
+    "funplus/bi-sdk-php": "0.1.3"
     ...
 }
 ```
